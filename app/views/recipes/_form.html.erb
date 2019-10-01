@@ -1,0 +1,72 @@
+<%= form_with(model: recipe, local: true) do |form| %>
+  <% if recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :prep_time %>
+    <%= form.number_field :prep_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cook_time %>
+    <%= form.number_field :cook_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :difficulty %>
+    <%= form.text_field :difficulty %>
+  </div>
+
+  <div class="field">
+    <%= form.label :serves %>
+    <%= form.number_field :serves %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ingredients %>
+    <%= form.text_area :ingredients %>
+  </div>
+
+  <div class="field">
+    <%= form.label :method %>
+    <%= form.text_area :method %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_id %>
+    <%= form.select :category_id, options_for_select( Category.all.collect { |u| [u.name, u.id] } ), :selected => recipe.category_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image_url %>
+    <%= form.text_area :image_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :featured %>
+    <%= form.check_box :featured %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ingredients_link %>
+    <%= form.text_area :ingredients_link %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
